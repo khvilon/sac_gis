@@ -11,7 +11,7 @@ OLMap.prototype.addLpus =  function(lpus)
 {
 
     if(lpus == null) return false;
-var path = this.hostIP + '/static/compile/js/olmap/images/lpu.png';
+var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
 	for(var i = 0; i < lpus.length; i++)
     {
         var options = {poppedup: false, label: lpus[i].name, path: path};

@@ -35,8 +35,8 @@
 	lpu: new OpenLayers.StyleMap(
    	{
          externalGraphic: "${path}",
-	  	graphicWidth: 36,
-	  	graphicHeight: 36,
+	  	graphicWidth: 22,
+	  	graphicHeight: 32,
 	  	pointRadius: 100
 	}),
     
