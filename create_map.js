@@ -1,64 +1,63 @@
-﻿OLMap.prototype.createMap =  function(divName)
+﻿OLMap.prototype.createMap =  function()
 {
+
+	//creating OpenLayers map object//
     this.map = new OpenLayers.Map(
     {
-        div: divName,
+        div: this.divName,
        	projection: new OpenLayers.Projection("EPSG:900913"),
         displayProjection: new OpenLayers.Projection("EPSG:4326"),
-	controls: []
+		controls: []
     });
 
+	//zoom event//
 	this.map.events.register('zoomend', this, function(event)
 	{
 		var zoom = event.object.getZoom();
-		if(this.maxZoom > zoom) removeGis(); 
-	});    	
+		//if(this.maxZoom > zoom) this.hide();
+	});
 
-   // this.map.addControl(new OpenLayers.Control.LayerSwitcher());
+	//adding default controls on map//
+	this.map.addControl(new OpenLayers.Control.LayerSwitcher());
     this.map.addControl(new OpenLayers.Control.Navigation());
 }
 
-OLMap.prototype.addMapserverLayer =  function()
+//Add ONE descripted mapserver layer
+OLMap.prototype.addMapserverLayer =  function(layerName, layerRuName, isBase)
+{	if(isBase === undefined) isBase = false;
+	var layer = new OpenLayers.Layer.TMS( layerRuName, this.mapServer,
+		{layername: layerName, type:'png', opacity: 1, isBaseLayer: isBase});
+	this.map.addLayer(layer);
+	return layer;
+}
+
+//Add ALL mapserver layers by addMapserverLayer
+OLMap.prototype.addMapserverLayers =  function()
 {
+	this.msLayer = this.addMapserverLayer('osm@g', "BaseMapServer", true);
+	this.waterLayer = this.addMapserverLayer('water@g', "Реки и озера");
+	this.roadLayer = this.addMapserverLayer('road@g', "Дороги");
+	this.railwayLayer = this.addMapserverLayer('railway@g', "Железные дороги");
 
- this.msLayer = new OpenLayers.Layer.TMS( "TMS",
-        "http://sac.khvi.ru:82/mapcache/tms/", {layername: 'osm@g', type:'png', opacity: 1} );
-this.map.addLayer(this.msLayer);
-
-    this.waterLayer = new OpenLayers.Layer.TMS( "Реки и озера",
-        "http://sac.khvi.ru:82/mapcache/tms/", {layername: 'water@g', type:'png', opacity: 1, isBaseLayer: false} );
-	this.map.addLayer(this.waterLayer);
-
-this.roadLayer = new OpenLayers.Layer.TMS( "Дороги",
-        "http://sac.khvi.ru:82/mapcache/tms/", {layername: 'road@g', type:'png', opacity: 1, isBaseLayer: false} );
-	this.map.addLayer(this.roadLayer);
-
-this.railwayLayer = new OpenLayers.Layer.TMS( "Железные дороги",
-        "http://sac.khvi.ru:82/mapcache/tms/", {layername: 'railway@g', type:'png', opacity: 1, isBaseLayer: false} );
-	this.map.addLayer(this.railwayLayer);
-
-/*
-this.msLayer = new OpenLayers.Layer.WMS("OpenLayers WMS", "http://sac.khvi.ru:82/mapcache/wms?",
-
-        {layers: 'all'}
-
-    );*/
-
-
- /*  var msMapAddr = "http://" + this.msMapIp + "/cgi-bin/mapserv?map=" + this.msMapPath;   
-    this.msLayer = new OpenLayers.Layer.MapServer("msMap", msMapAddr, {layers: "all"}); */
-      
-
-/*var gsat = new OpenLayers.Layer.Google(
-                "Google sat",
-                {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 20,isBaseLayer: false, opacity: 1}
-            );
-this.map.addLayer(gsat);  */ 
+	this.addLayersMenu();
 }
 
 OLMap.prototype.addOSMLayer =  function()
 {
-	this.osmLayer = new OpenLayers.Layer.OSM(); 
+	this.osmLayer = new OpenLayers.Layer.OSM();
 	this.map.addLayer(this.osmLayer);
-	      
+}
+
+OLMap.prototype.addOSMLocalLayer =  function()
+{
+	this.osmLocalLayer = new OpenLayers.Layer.OSM("Локальная OSM карта",
+	this.hostIP + "/static/compile/js/olmap/tiles/${z}/${x}/${y}.png", {numZoomLevels: 17, alpha: true, isBaseLayer: true});
+    this.map.addLayers([this.osmLocalLayer]);
+}
+
+OLMap.prototype.addBaseLayers = function()
+{
+	if (this.type == "lpu") this.addMapserverLayers();this.addOSMLayer();
+
+	if (this.type == "avto") this.addMapserverLayers(); 
 }

@@ -1,68 +1,66 @@
-
-
-function OLMap()
+function OLMap(parentName, hostIP, type, mapServerIP, divsToHide, regionsManager)
 {
-	//OpenLayers map object
-	var map;
-    var hostIP;
+	this.divName = 'gis_div';
+	this.parentName = parentName;
+	this.parentDiv = document.getElementById(parentName);
+	//this.div = this.createDiv();
 
-	//Yandex and Google traffic layers
-	//var yTraffic, gTraffic;
-    var msLayer, osmLayer;
+	this.divsToHide = divsToHide;
 
-	//vector layers
-    var lpuLayer, maskLayer, requisitionsLayer;
-    
-    //other non base layers
-    var borderLayer;
-    
-    var msMapIp = '54.185.39.17';
-    var msMapPath = '/home/ubuntu/osm2/basemaps/osm-default.map';
-    var msLayers = 'all';
+	this.regionsManager = regionsManager;
 
-	var maxZoom;
-    
-    var popup;
+
+	this.hostIP = hostIP;
+	this.path = this.hostIP + '/static/compile/js/olmap';
+	this.mapServer = mapServerIP + "/mapcache/tms/";  //"http://sac.khvi.ru:82/mapcache/tms/"
+	this.type = type;
+
+    	this.loadLib();
 }
 
 
-OLMap.prototype.init = function(divName, ip, type)
+OLMap.prototype.init = function()
 {
 	OpenLayers.Lang.setCode("ru");
-    
-	this.hostIP = ip;
 
-
-	this.createMap(divName);
+	this.createMap();
+	this.addVectorLayers();
+	this.addBaseLayers();
 	this.addCustomControls();
-    
-	this.addMapserverLayer();
-	this.addOSMLayer();
-	
-	this.addVectorLayers(type); 
-	
-	this.addLayersMenu();
-
 	return true;
 };
 
 
-
-OLMap.prototype.addBorderLayer =  function()
+OLMap.prototype.loadLib = function()
 {
-    this.borderLayer = new OpenLayers.Layer.TMS(
-              "границы",
-              "http://openmapsurfer.uni-hd.de/tiles/adminb/",
-              {
-                  type: 'png', getURL: getTileURL,
-                  displayOutsideMaxExtent: true,
-                  isBaseLayer: false,
-                  numZoomLevels: 19,
-              }
-            );
+	var kLoader = new KScriptLoader();
 
-     this.map.addLayer(this.borderLayer);
-}
+	var urls = ['create_map','markers','subj','tools','vector_layers', 'controls', 'show_hide'];
+	for(var i = 0; i < urls.length; i++){urls[i] = this.path +'/'+ urls[i] + '.js';}
 
+    var me = this;
+	kLoader.add(urls);
+	//kLoader.add(function() {me.init()});
+	kLoader.run();
+};
 
- 
+OLMap.prototype.createDiv = function()
+{
+	this.div = document.createElement('div');
+
+	this.div.style.width = "90%";
+	this.div.style.height = "80%";
+	this.div.style.position = "absolute";
+	this.div.style.left = "5%";
+	this.div.style.top = "13%";
+	this.div.style.background = "#77a4d4";
+	this.div.style.borderStyle = "solid";
+	this.div.style.borderWidth = "2px";
+	this.div.style.borderColor = "#79a7d9";
+	this.div.style.zIndex = 200;
+//	this.div.style.display = 'none';
+	this.div.id = this.divName;
+
+	this.parentDiv.appendChild(this.div);
+};
+

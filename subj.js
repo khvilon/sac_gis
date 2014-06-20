@@ -5,11 +5,12 @@ OLMap.prototype.centerMos =  function()
 
 OLMap.prototype.maskSubj =  function(geom)
 {
+
     var wkt_options =
-    { 
+    {
         'internalProjection': this.map.baseLayer.projection,
         'externalProjection': new OpenLayers.Projection("EPSG:4326")
-    }; 
+    };
 	wkt = new OpenLayers.Format.WKT(wkt_options);
 
 	var holeFeature = wkt.read(geom);
@@ -27,11 +28,13 @@ OLMap.prototype.maskSubj =  function(geom)
   	  return newFeature;
 	}
 
-	var maskFeature = Subtract(bgPolyFeature, holeFeature); 
+	var maskFeature = Subtract(bgPolyFeature, holeFeature);
+
 	this.maskLayer.addFeatures([maskFeature]);
 
+
 }
- 
+
 
 OLMap.prototype.centerSubj =  function(data)
 {
@@ -45,7 +48,7 @@ OLMap.prototype.centerSubj =  function(data)
 
 		this.maxZoom = this.map.getZoom();
 
-        this.maskSubj(data.polygone); 
+        this.maskSubj(data.polygone);
 
         this.map.setOptions({restrictedExtent: this.map.getExtent()});
 }
