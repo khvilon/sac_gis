@@ -2,21 +2,22 @@ OLMap.prototype.show = function(id)
 {
 	this.createDiv();
 	//this.map.updateSize();
-this.init();
+	this.init();
 
 	$( "#" + this.divName ).show();
 	for(var i = 0; i < this.divsToHide.length; i++)
 	{		$( "#" + this.divsToHide[i] ).hide();	}
 
 	this.regionsManager.geRegionLatLonById(id);
-	if(this.type == 'avto')this.regionsManager.getRequisitions(id);
-	else if(this.type == 'lpu') this.regionsManager.getLpus(id);
+
 
 };
 
 
 OLMap.prototype.hide = function()
 {
+	if(this.onClose != null) this.onClose();
+
 	this.parentDiv.removeChild(this.div);
   //  $(  "#" + this.divName  ).hide();
     for(var i = 0; i < this.divsToHide.length; i++)

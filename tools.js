@@ -14,3 +14,8 @@ OLMap.prototype.newLonLat = function(lat, lon)
         this.map.getProjectionObject());
 }
 
+OLMap.prototype.toEPSG4326 = function(obj)
+{
+    return obj.transform( this.map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"));
+}
+

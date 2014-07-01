@@ -1,9 +1,11 @@
-function OLMap(parentName, hostIP, type, mapServerIP, divsToHide, regionsManager)
+function OLMap(parentName, hostIP, type, mapServerIP, divsToHide, regionsManager, onClose)
 {
 	this.divName = 'gis_div';
 	this.parentName = parentName;
 	this.parentDiv = document.getElementById(parentName);
 	//this.div = this.createDiv();
+
+	this.onClose = onClose;
 
 	this.divsToHide = divsToHide;
 

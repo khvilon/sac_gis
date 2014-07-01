@@ -51,4 +51,18 @@ OLMap.prototype.centerSubj =  function(data)
         this.maskSubj(data.polygone);
 
         this.map.setOptions({restrictedExtent: this.map.getExtent()});
+
+
+        if(this.type == 'avto')this.regionsManager.getRequisitions(id);
+		else if(this.type == 'lpu')
+		{
+			bounds = this.map.getExtent();
+			var min_lonlat = this.toEPSG4326(new OpenLayers.LonLat(bounds.left, bounds.bottom));
+			var max_lonlat = this.toEPSG4326(new OpenLayers.LonLat(bounds.right,bounds.top));
+			this.regionsManager.getLpus(min_lonlat.lat, min_lonlat.lon, max_lonlat.lat, max_lonlat.lon);		//	var min_lat = this.toEPSG4326();
+		//	var min_lon = this.toEPSG4326();
+		//	var max_lat = this.toEPSG4326(bounds.bottom);
+		//	var max_lon = this.toEPSG4326(bounds.right);
+		//	this.regionsManager.getLpus(min_lat, min_lon, max_lat, max_lon);
+		}
 }
