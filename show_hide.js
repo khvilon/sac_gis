@@ -16,6 +16,7 @@ OLMap.prototype.show = function(id)
 
 OLMap.prototype.hide = function()
 {
+	this.maxZoom = null;
 	if(this.onClose != null) this.onClose();
 
 	this.parentDiv.removeChild(this.div);

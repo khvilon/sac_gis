@@ -92,7 +92,7 @@ OLMap.prototype.addLayersMenu = function()
 		var lcDiv = document.createElement('div');
 		lcDiv.style.position = 'relative';
 		lcDiv.style.left = '20px';
-		lcDiv.style.top = '25px';
+		lcDiv.style.top = '11px';
 
 		var pathTrue = me.path + '/images/layers_menu/tick_true.png';
 		var pathFalse = me.path + '/images/layers_menu/tick_false.png';
@@ -124,10 +124,14 @@ OLMap.prototype.addLayersMenu = function()
 		document.getElementById('gis_layers_menu').appendChild(lcDiv);
 	}
 
+
+
+	if(this.lpuLayer != undefined)addLayerControl(this.lpuLayer);
+	else if(this.requisitionsLayer != undefined)addLayerControl(this.requisitionsLayer);
+
 	addLayerControl(this.roadLayer);
 	addLayerControl(this.waterLayer);
 	addLayerControl(this.railwayLayer);
 
-	if(this.lpuLayer != undefined)addLayerControl(this.lpuLayer);
-	else if(this.requisitionsLayer != undefined)addLayerControl(this.requisitionsLayer);
+	addLayerControl(this.maskLayer);
 }

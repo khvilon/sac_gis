@@ -1,4 +1,4 @@
-﻿OLMap.prototype.createMap =  function()
+OLMap.prototype.createMap =  function()
 {
 
 	//creating OpenLayers map object//
@@ -11,14 +11,15 @@
     });
 
 	//zoom event//
-	this.map.events.register('zoomend', this, function(event)
+	this.map.events.register('zoomend', this, function(zoom_event)
 	{
-		var zoom = event.object.getZoom();
-		//if(this.maxZoom > zoom) this.hide();
+		var zoom = zoom_event.object.getZoom();
+		if(this.maxZoom != null && this.maxZoom > zoom)
+			this.hide();
 	});
 
 	//adding default controls on map//
-	this.map.addControl(new OpenLayers.Control.LayerSwitcher());
+//	this.map.addControl(new OpenLayers.Control.LayerSwitcher());
     this.map.addControl(new OpenLayers.Control.Navigation());
 }
 
@@ -38,8 +39,6 @@ OLMap.prototype.addMapserverLayers =  function()
 	this.waterLayer = this.addMapserverLayer('water@g', "Реки и озера");
 	this.roadLayer = this.addMapserverLayer('road@g', "Дороги");
 	this.railwayLayer = this.addMapserverLayer('railway@g', "Железные дороги");
-
-	this.addLayersMenu();
 }
 
 OLMap.prototype.addOSMLayer =  function()
@@ -59,5 +58,5 @@ OLMap.prototype.addBaseLayers = function()
 {
 	if (this.type == "lpu") this.addMapserverLayers();this.addOSMLayer();
 
-	if (this.type == "avto") this.addMapserverLayers(); 
+	if (this.type == "avto") this.addMapserverLayers();
 }

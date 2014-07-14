@@ -24,10 +24,13 @@ function OLMap(parentName, hostIP, type, mapServerIP, divsToHide, regionsManager
 OLMap.prototype.init = function()
 {
 	OpenLayers.Lang.setCode("ru");
+	OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 
 	this.createMap();
-	this.addVectorLayers();
 	this.addBaseLayers();
+	this.addVectorLayers();
+
+	this.addLayersMenu();
 	this.addCustomControls();
 	return true;
 };
@@ -59,7 +62,7 @@ OLMap.prototype.createDiv = function()
 	this.div.style.borderStyle = "solid";
 	this.div.style.borderWidth = "2px";
 	this.div.style.borderColor = "#79a7d9";
-	this.div.style.zIndex = 200;
+	this.div.style.zIndex = 1000;
 //	this.div.style.display = 'none';
 	this.div.id = this.divName;
 

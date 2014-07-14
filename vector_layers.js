@@ -35,7 +35,7 @@ OLMap.prototype.addVectorLayers = function()
 	var me = this;
 	function addVectorLayer(name, styleMap, projection)
 	{
-		var args = {styleMap: styleMap};
+		var args = {styleMap: styleMap, renderers: ['VML', 'Canvas' ]};
 		if(projection) args.projection = projection;
 		var layer = new OpenLayers.Layer.Vector(name, args);
 	    me.map.addLayer(layer);
