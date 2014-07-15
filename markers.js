@@ -27,7 +27,7 @@ var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
     }
 
 
-	this.map.events.register('featureclick', this.lpuLayer, function hh(e) {alert(e.feature.attributes) } );
+	this.map.events.register('featureclick', this.lpuLayer, null );
 
 	this.addMarkersPopup(this.lpuLayer, this.createLpusPopupHtml , null);
 
