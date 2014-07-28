@@ -28,5 +28,5 @@ OLMap.prototype.showRadarWaiter =  function()
 	var pathArrow = this.hostIP + '/static/compile/js/olmap/imagesradar_waiter_arrow.png';
 	var html = "<img src='"+pathBack+"' style='position:absolute; left:0px; top:0px'>";
 	html+= "<img src='"+pathArrow+"' style='position:absolute; left:50%; top:51%'>";
-	$(this.map).append(html);
+	$("#"+this.divName).append(html);
 }
