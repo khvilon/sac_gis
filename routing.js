@@ -1,7 +1,7 @@
 OLMap.prototype.route =  function()
 {
 	this.routing = true;
-	//this.map.cursor =
+	this.map.cursor =  'crosshair';
   //place car
 }
 
