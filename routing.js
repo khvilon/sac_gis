@@ -1,13 +1,13 @@
 OLMap.prototype.route =  function()
 {
-	this.map.style.cursor =  'crosshair';
+//	this.map.style.cursor =  'crosshair';
 
 	var me = this;
 
 	this.map.events.register('click', this.map, function(click_event)
 	{
 		alert(click_event);
-		me.map.style.cursor = 'default';
+//		me.map.style.cursor = 'default';
 		me.map.events.unregister('click', me.map);
 		me.routeStartSelected(35,55);
 	});
