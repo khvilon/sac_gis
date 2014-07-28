@@ -4,19 +4,19 @@ OLMap.prototype.route =  function()
 
 	var me = this;
 
-	this.map.events.register('click', this, function(click_event)
+	this.map.events.register('click', this.map, function(click_event)
 	{
 		alert(click_event);
 		me.map.cursor = 'default';
-		me.map.events.unregister('click');
-		routeStartSelected(35,55);
+		me.map.events.unregister('click', me.map);
+		me.routeStartSelected(35,55);
 	});
 }
 
 
 OLMap.prototype.routeStartSelected =  function(lat, lon)
 {
-	showRadarWaiter();
+	this.showRadarWaiter();
 
 
 }
