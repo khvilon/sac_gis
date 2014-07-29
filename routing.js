@@ -33,7 +33,13 @@ OLMap.prototype.initRoute =  function()
 	});
 
 	this.clickControl = new OpenLayers.Control.Click();
-	this.map.addControl(this.clickControl);}
+	this.map.addControl(this.clickControl);
+
+	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
+	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
+	var html = "<img src='"+pathBack+"' id='radar_back' display='none' style='position:absolute; left:0px; top:0px; z-index:1000'>";
+	html+= "<img src='"+pathArrow+"' id='radar_arrow' display='none' style='position:absolute; left:0px; top:0px; z-index:1000'>";
+	$("#"+this.divName).append(html);}
 
 
 OLMap.prototype.route =  function()
@@ -73,11 +79,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 
 OLMap.prototype.showRadarWaiter =  function()
 {
-	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
-	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
-	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000'>";
-	html+= "<img src='"+pathArrow+"' id='radar_arrow' style='position:absolute; left:0px; top:0px; z-index:1000'>";
-	$("#"+this.divName).append(html);
+	$("#radar_arrow").show();
+    $("#radar_back").show();
 
 	var repeats = 5;
 	var animateTo = repeats*360;
