@@ -57,10 +57,9 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
-alert(this.lpus);///	if(this.lpus == null) return;
- //   if(this.lpus.length == 0) return;
+   if(this.lpus.length == 0) return;
 
-  /*  var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
+   var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
@@ -82,7 +81,7 @@ alert(this.lpus);///	if(this.lpus == null) return;
     	};
     }
 
-    $.getJSON(ajaxPath, callback); */
+    $.getJSON(ajaxPath, callback);
 }
 
 
