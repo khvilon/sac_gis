@@ -47,15 +47,15 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 {
 	this.showRadarWaiter();
 
-	for(var i = 0; i < c; i++)
-	{
+	//for(var i = 0; i < c; i++)
+	//{
     	/*var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
     	"~" + prepCoord(obj._coords[3]) + "," + prepCoord(obj._coords[2]) +
         "&lang=ru-RU";
 
 		$.getJSON(ajaxPath, callback); */
-	}
+	//}
 }
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
