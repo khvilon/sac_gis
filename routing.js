@@ -85,11 +85,11 @@ OLMap.prototype.showRadarWaiter =  function()
 	var repeats = 100;
 	var animateTo = repeats*360;
 	var duration = repeats * 50 * 1000;
-	/*$("#radar_arrow").rotate(
+	$("#radar_arrow").rotate(
 	{
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
-		center: ["50%", "90%"],
-	});   */
+		center: ["50%", "500px"],
+	});
 }
