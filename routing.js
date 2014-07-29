@@ -83,5 +83,5 @@ OLMap.prototype.showRadarWaiter =  function()
 		angle:-90,
 		animateTo:5*360,
 		duration:5*8*1000,
-	}
+	});
 }
