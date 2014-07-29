@@ -31,6 +31,8 @@ var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
 
 	this.addMarkersPopup(this.lpuLayer, this.createLpusPopupHtml , null);
 
+	this.lpus = lpus;
+
     return true;
 }
 

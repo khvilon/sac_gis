@@ -52,28 +52,36 @@ OLMap.prototype.route =  function()
 OLMap.prototype.routeStartSelected =  function(lat, lon)
 {
 	this.showRadarWaiter();
-
-	//for(var i = 0; i < c; i++)
-	//{
-    	/*var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
-    	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
-    	"~" + prepCoord(obj._coords[3]) + "," + prepCoord(obj._coords[2]) +
-        "&lang=ru-RU";
-
-		$.getJSON(ajaxPath, callback); */
-	//}
+	routeLPU(lat, lon, 0);
 }
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
+    if(this.lpus.length == 0) return;
 
-    	/*var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
+    var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
-    	"~" + prepCoord(obj._coords[3]) + "," + prepCoord(obj._coords[2]) +
+    	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
-		$.getJSON(ajaxPath, callback); */
+	var me = this;
 
+    var callback;
+    if(i==lpus.length-1)
+    {
+    	callback = function(data)
+    	{    		me.hideRadarWaiter();
+    		alert(data);    	};
+    }
+    else
+    {
+    	callback = function(data)
+    	{
+    		this.routeLPU(lat, lon, i+1);
+    	};
+    }
+
+    $.getJSON(ajaxPath, callback);
 }
 
 
@@ -93,3 +101,8 @@ OLMap.prototype.showRadarWaiter =  function()
 		center: ["50%", "500px"],
 	});
 }
+
+OLMap.prototype.hideRadarWaiter =  function()
+{	$("#radar_arrow").hide();
+    $("#radar_back").hide();
+	$("#radar_arrow").stopRotate();}
