@@ -15,6 +15,7 @@ OLMap.prototype.addMarker =  function(layer, lat, lon, options)
 
 OLMap.prototype.addLpus =  function(lpus)
 {
+	this.lpus = lpus;
 
     if(lpus == null) return false;
 var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
@@ -31,7 +32,7 @@ var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
 
 	this.addMarkersPopup(this.lpuLayer, this.createLpusPopupHtml , null);
 
-	this.lpus = lpus;
+
 
     return true;
 }
