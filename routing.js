@@ -82,7 +82,7 @@ OLMap.prototype.showRadarWaiter =  function()
 	$("#radar_arrow").show();
     $("#radar_back").show();
 
-	var repeats = 7;
+	var repeats = 100;
 	var animateTo = repeats*360;
 	var duration = repeats * 12 * 1000;
 	$("#radar_arrow").rotate(
@@ -90,6 +90,6 @@ OLMap.prototype.showRadarWaiter =  function()
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
-		center: ["48%", "98%"],
+		center: ["49%", "98%"],
 	});
 }
