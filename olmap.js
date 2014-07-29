@@ -41,7 +41,8 @@ OLMap.prototype.loadLib = function()
 {
 	var kLoader = new KScriptLoader();
 
-	var urls = ['create_map','markers','subj','tools','vector_layers', 'controls', 'show_hide', 'routing'];
+	var urls = ['create_map','markers','subj','tools','vector_layers', 'controls', 'show_hide',
+	 'routing', 'jQueryRotate'];
 	for(var i = 0; i < urls.length; i++){urls[i] = this.path +'/'+ urls[i] + '.js';}
 
     var me = this;

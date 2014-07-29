@@ -83,12 +83,12 @@ OLMap.prototype.showRadarWaiter =  function()
     $("#radar_back").show();
 
 	var repeats = 5;
-	/*var animateTo = repeats*360;
+	var animateTo = repeats*360;
 	var duration = repeats * 8 * 1000;
 	$("#radar_arrow").rotate(
 	{
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
-	});    */
+	});
 }
