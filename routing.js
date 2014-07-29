@@ -23,8 +23,7 @@ OLMap.prototype.initRoute =  function()
 
         trigger: function(e)
         {        	me.clickControl.deactivate();
-        	me.map.style.cursor = 'default';
-			me.map.events.unregister('click', me.map);
+        	$('#' + me.divName).css('cursor', 'default');
          	var lonlat = me.map.getLonLatFromPixel(e.xy);
                     alert("You clicked near " + lonlat.lat + " N, " +
                                               + lonlat.lon + " E");
@@ -39,6 +38,7 @@ OLMap.prototype.initRoute =  function()
 
 OLMap.prototype.route =  function()
 {
+	$('#' + this.divName).css('cursor', 'crosshair');
 //	this.map.style.cursor =  'crosshair';
 //	var me = this;
 	this.clickControl.activate();
