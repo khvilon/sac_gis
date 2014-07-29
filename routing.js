@@ -59,7 +59,7 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
    if(this.lpus.length == 0) return;
 
-   var ajaxPath =  this.hostIP + "proxy&url=http://route-maps.yandex.ru/1.x/?" +
+   var ajaxPath =  this.hostIP + "/arm/proxy?url=http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
@@ -70,13 +70,13 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     if(i==this.lpus.length-1)
     {
     	callback = function(data)
-    	{    		me.hideRadarWaiter();
-    		alert(data);    	};
+    	{
+    		alert(data);    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{
+    	{    		alert(data);
     		me.routeLPU(lat, lon, i+1);
     	};
     }
