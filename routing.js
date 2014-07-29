@@ -25,8 +25,7 @@ OLMap.prototype.initRoute =  function()
         {        	me.clickControl.deactivate();
         	$('#' + me.divName).css('cursor', 'default');
          	var lonlat = me.toEPSG4326(me.map.getLonLatFromPixel(e.xy));
-                    alert("You clicked near " + lonlat.lat + " N, " +
-                                              + lonlat.lon + " E");
+
 			me.map.setCenter(lonlat);
             me.routeStartSelected(lonlat.lat,lonlat.lon);
 		}
@@ -40,8 +39,6 @@ OLMap.prototype.initRoute =  function()
 OLMap.prototype.route =  function()
 {
 	$('#' + this.divName).css('cursor', 'crosshair');
-//	this.map.style.cursor =  'crosshair';
-//	var me = this;
 	this.clickControl.activate();
 }
 
@@ -50,6 +47,26 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 {
 	this.showRadarWaiter();
 
+	for(var i = 0; i < c; i++)
+	{
+    	/*var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
+    	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
+    	"~" + prepCoord(obj._coords[3]) + "," + prepCoord(obj._coords[2]) +
+        "&lang=ru-RU";
+
+		$.getJSON(ajaxPath, callback); */
+	}
+}
+
+OLMap.prototype.routeLPU =  function(lat, lon, i)
+{
+
+    	/*var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
+    	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
+    	"~" + prepCoord(obj._coords[3]) + "," + prepCoord(obj._coords[2]) +
+        "&lang=ru-RU";
+
+		$.getJSON(ajaxPath, callback); */
 
 }
 
@@ -58,7 +75,13 @@ OLMap.prototype.showRadarWaiter =  function()
 {
 	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
 	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
-	var html = "<img src='"+pathBack+"' style='position:absolute; left:0px; top:0px; z-index:1000'>";
-	html+= "<img src='"+pathArrow+"' style='position:absolute; left:0px; top:0px; z-index:1000'>";
+	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000'>";
+	html+= "<img src='"+pathArrow+"' id='radar_arrow' style='position:absolute; left:0px; top:0px; z-index:1000'>";
 	$("#"+this.divName).append(html);
+	$("#radar_arrow").rotate(
+	{
+		angle:-90,
+		animateTo:5*360,
+		duration:5*8*1000,
+	}
 }
