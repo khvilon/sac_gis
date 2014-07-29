@@ -67,7 +67,7 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 	var me = this;
 
     var callback;
-    if(i==lpus.length-1)
+    if(i==this.lpus.length-1)
     {
     	callback = function(data)
     	{    		me.hideRadarWaiter();
