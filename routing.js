@@ -24,9 +24,10 @@ OLMap.prototype.initRoute =  function()
         trigger: function(e)
         {        	me.clickControl.deactivate();
         	$('#' + me.divName).css('cursor', 'default');
-         	var lonlat = me.map.getLonLatFromPixel(e.xy);
+         	var lonlat = me.toEPSG4326(me.map.getLonLatFromPixel(e.xy));
                     alert("You clicked near " + lonlat.lat + " N, " +
                                               + lonlat.lon + " E");
+			me.map.setCenter(lonlat);
             me.routeStartSelected(lonlat.lat,lonlat.lon);
 		}
 
