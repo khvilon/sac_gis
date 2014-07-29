@@ -12,6 +12,13 @@ OLMap.prototype.addMarker =  function(layer, lat, lon, options)
 	layer.addFeatures([feature]);
 }
 
+OLMap.prototype.addAmbulance =  function(lat, lon)
+{
+	var options = new Object();
+	options.path =  this.hostIP + '/static/compile/js/olmap/images/ambulance.png';
+    options.poppedup = false;
+    this.addMarker(this.ambulanceLayer, lat, lon, options );}
+
 
 OLMap.prototype.addLpus =  function(lpus)
 {

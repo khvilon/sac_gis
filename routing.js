@@ -50,7 +50,7 @@ OLMap.prototype.route =  function()
 
 
 OLMap.prototype.routeStartSelected =  function(lat, lon)
-{
+{	this.addAmbulance(lat, lon);
 	this.showRadarWaiter();
 	this.routeLPU(lat, lon, 0);
 }

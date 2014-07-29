@@ -27,6 +27,14 @@ OLVectorStyle =
 	  	graphicHeight: 42,
 	  	pointRadius: 100
 	}),
+
+	ambulance: new OpenLayers.StyleMap(
+   	{
+        externalGraphic: "${path}",
+	  	graphicWidth: 45,
+	  	graphicHeight: 28,
+	  	pointRadius: 100
+	}),
 };
 
 
@@ -45,8 +53,13 @@ OLMap.prototype.addVectorLayers = function()
     this.maskLayer = addVectorLayer("Затемнение", OLVectorStyle.mask);
 
     if (this.type == "lpu")
+    {
 	   this.lpuLayer = addVectorLayer("ЛПУ", OLVectorStyle.lpu);
+	   this.ambulanceLayer = addVectorLayer("Скорая", OLVectorStyle.ambulance);
+	}
 
     if (this.type == "avto")
 	   this.requisitionsLayer = addVectorLayer("Обращения", OLVectorStyle.requisitions);
+
+
 };
