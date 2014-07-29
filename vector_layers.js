@@ -55,6 +55,7 @@ OLMap.prototype.addVectorLayers = function()
     if (this.type == "lpu")
     {
 	   this.lpuLayer = addVectorLayer("ЛПУ", OLVectorStyle.lpu);
+
 	   this.ambulanceLayer = addVectorLayer("Скорая", OLVectorStyle.ambulance);
 	}
 
