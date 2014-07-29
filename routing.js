@@ -52,12 +52,12 @@ OLMap.prototype.route =  function()
 OLMap.prototype.routeStartSelected =  function(lat, lon)
 {
 	this.showRadarWaiter();
-	routeLPU(lat, lon, 0);
+	this.routeLPU(lat, lon, 0);
 }
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
-    if(this.lpus.length == 0) return;
+ /*   if(this.lpus.length == 0) return;
 
     var ajaxPath =  "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" lon "," + lat +
@@ -77,11 +77,11 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		this.routeLPU(lat, lon, i+1);
+    		me.routeLPU(lat, lon, i+1);
     	};
     }
 
-    $.getJSON(ajaxPath, callback);
+    $.getJSON(ajaxPath, callback);     */
 }
 
 
