@@ -64,6 +64,7 @@ OLMap.prototype.createDiv = function()
 	this.div.style.borderStyle = "solid";
 	this.div.style.borderWidth = "2px";
 	this.div.style.borderColor = "#79a7d9";
+	this.div.style.overflow = "hidden";
 	this.div.style.zIndex = 1000;
 //	this.div.style.display = 'none';
 	this.div.id = this.divName;
