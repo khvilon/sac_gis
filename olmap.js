@@ -32,6 +32,7 @@ OLMap.prototype.init = function()
 
 	this.addLayersMenu();
 	this.addCustomControls();
+	this.initRoute();
 	return true;
 };
 
