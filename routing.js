@@ -78,10 +78,14 @@ OLMap.prototype.showRadarWaiter =  function()
 	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000'>";
 	html+= "<img src='"+pathArrow+"' id='radar_arrow' style='position:absolute; left:0px; top:0px; z-index:1000'>";
 	$("#"+this.divName).append(html);
+
+	var repeats = 5;
+	var animateTo = repeats*360;
+	var duration = repeats * 8 * 1000;
 	$("#radar_arrow").rotate(
 	{
 		angle:-90,
-		animateTo:5*360,
-		duration:5*8*1000,
+		animateTo:animateTo,
+		duration:duration,
 	});
 }
