@@ -37,8 +37,8 @@ OLMap.prototype.initRoute =  function()
 
 	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
 	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
-	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000'; display:none>";
-	html+= "<img src='"+pathArrow+"' id='radar_arrow' style='position:absolute; left:0px; top:0px; z-index:1000'; display: none>";
+	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000; display:none'>";
+	html+= "<img src='"+pathArrow+"' id='radar_arrow' style='position:absolute; left:0px; top:0px; z-index:1000; display:none'>";
 	$("#"+this.divName).append(html);}
 
 
