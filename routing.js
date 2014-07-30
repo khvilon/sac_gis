@@ -74,12 +74,12 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		//me.drawPath();    		me.hideRadarWaiter();    	};
+    		me.drawPath();    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{    		//me.drawPath();
+    	{    		me.drawPath();
     		me.routeLPU(lat, lon, i+1);
     	};
     }
