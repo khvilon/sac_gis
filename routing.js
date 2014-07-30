@@ -38,7 +38,7 @@ OLMap.prototype.initRoute =  function()
 	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
 	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
 	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000; display:none'>";
-	html+= "<img src='"+pathArrow+"' width='2000px' id='radar_arrow' style='position:absolute; left:-136px; top:-78px; z-index:1000; display:none'>";
+	html+= "<img src='"+pathArrow+"' width='2000px' id='radar_arrow' style='position:absolute; left:-136px; top:-68px; z-index:1000; display:none'>";
 	$("#"+this.divName).append(html);}
 
 
@@ -98,13 +98,13 @@ OLMap.prototype.showRadarWaiter =  function()
 	var repeats = 100;
 	var animateTo = repeats*360;
 	var duration = repeats * 50 * 1000;
-	$("#radar_arrow").rotate(
+/*	$("#radar_arrow").rotate(
 	{
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
 		center: ["50%", "50%"],//"500px"],
-	});
+	});*/
 }
 
 OLMap.prototype.hideRadarWaiter =  function()
@@ -114,9 +114,11 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData = function(data)
 {
-	var points = $.parseJSON(data);
-	alert(points.features);
-	return points;
+	console.log("data " + data);
+	if(data == null) return null;
+	var obj = $.parseJSON(data);
+	console.log("obj " + obj);
+	return obj;
 }
 
 
