@@ -112,17 +112,16 @@ OLMap.prototype.hideRadarWaiter =  function()
     $("#radar_back").hide();
 	$("#radar_arrow").stopRotate();}
 
-OLMap.prototype.pntsFromYData =  function(data)
+OLMap.prototype.pntsFromYData = function(data)
 {
-//	var points = JSON && JSON.parse(data) || $.parseJSON(data);
-//	return points;
-return data;
+	var points = $.parseJSON(data);
+	return points;
 }
 
 
 OLMap.prototype.drawPath =  function(data)
 {
 	var points = this.pntsFromYData(data);
-	alert(points);
+
 
 }
