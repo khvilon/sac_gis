@@ -114,7 +114,8 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData =  function(data)
 {
-	alert(data);
+	var points = JSON.parse(data);
+	return points;
 }
 
 
