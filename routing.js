@@ -103,7 +103,7 @@ OLMap.prototype.showRadarWaiter =  function()
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
-		center: ["50%", "500px"],
+		center: ["50%", "50%"],//"500px"],
 	});
 }
 
@@ -112,8 +112,14 @@ OLMap.prototype.hideRadarWaiter =  function()
     $("#radar_back").hide();
 	$("#radar_arrow").stopRotate();}
 
+OLMap.prototype.pntsFromYData =  function(data)
+{
+	alert(data);
+}
+
 
 OLMap.prototype.drawPath =  function(data)
 {
-	alert(data);
+	var points = this.pntsFromYData(data);
+
 }
