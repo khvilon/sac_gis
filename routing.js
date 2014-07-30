@@ -74,12 +74,12 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		alert(data);    		me.hideRadarWaiter();    	};
+    		me.drawPath();    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{    		alert(data);
+    	{    		me.drawPath();
     		me.routeLPU(lat, lon, i+1);
     	};
     }
@@ -109,3 +109,9 @@ OLMap.prototype.hideRadarWaiter =  function()
 {	$("#radar_arrow").hide();
     $("#radar_back").hide();
 	$("#radar_arrow").stopRotate();}
+
+
+OLMap.prototype.drawPath =  function(data)
+{
+	alert(data);
+}
