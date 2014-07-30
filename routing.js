@@ -84,7 +84,9 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     	};
     }
 
-    $.getJSON(ajaxPath, callback);
+   // $.getJSON(ajaxPath, callback);
+   $.getJSON(ajaxPath, function(data)
+   {   	alert(data);   	});
 }
 
 
