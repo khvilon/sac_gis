@@ -38,7 +38,7 @@ OLMap.prototype.initRoute =  function()
 	var pathBack = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_back.png';
 	var pathArrow = this.hostIP + '/static/compile/js/olmap/images/radar_waiter_arrow.png';
 	var html = "<img src='"+pathBack+"' id='radar_back' style='position:absolute; left:0px; top:0px; z-index:1000; display:none'>";
-	html+= "<img src='"+pathArrow+"' width='2000px' id='radar_arrow' style='position:absolute; left:-136px; top:-73px; z-index:1000; display:none'>";
+	html+= "<img src='"+pathArrow+"' width='2000px' id='radar_arrow' style='position:absolute; left:-136px; top:-78px; z-index:1000; display:none'>";
 	$("#"+this.divName).append(html);}
 
 
@@ -116,12 +116,13 @@ OLMap.prototype.pntsFromYData =  function(data)
 {
 //	var points = JSON && JSON.parse(data) || $.parseJSON(data);
 //	return points;
+return data;
 }
 
 
 OLMap.prototype.drawPath =  function(data)
 {
-//	var points = this.pntsFromYData(data);
-	alert(data);
+	var points = this.pntsFromYData(data);
+	alert(points);
 
 }
