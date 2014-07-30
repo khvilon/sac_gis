@@ -121,10 +121,24 @@ OLMap.prototype.pntsFromYData = function(data)
 	return obj;
 }
 
+OLMap.prototype.pathStyle =
+{
+		strokeColor: "blue",
+		strokeOpacity: 0.6,
+    	strokeWidth: 4
+}
+
 
 OLMap.prototype.drawPath =  function(data)
 {
 	var points = this.pntsFromYData(data);
+	if(data == null) return;
 
+    var line = new OpenLayers.Geometry.LineString(points);
+	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
+	this.ambulanceLayer.addFeatures([lineFeature]);
 
+	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
+
+    //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
 }
