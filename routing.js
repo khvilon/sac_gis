@@ -122,5 +122,6 @@ OLMap.prototype.pntsFromYData =  function(data)
 OLMap.prototype.drawPath =  function(data)
 {
 	var points = this.pntsFromYData(data);
+	alert(data);
 
 }
