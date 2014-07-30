@@ -57,12 +57,15 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
-   if(this.lpus.length == 0) return;
+   	if(this.lpus.length == 0) return;
 
-   var ajaxPath =  this.hostIP + "/arm/proxy?url=http://route-maps.yandex.ru/1.x/?" +
+	var url = "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
+
+	url = window.btoa(url);
+   	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
 
 	var me = this;
 
