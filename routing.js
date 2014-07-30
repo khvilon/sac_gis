@@ -74,12 +74,12 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		me.drawPath();    		me.hideRadarWaiter();    	};
+    		//me.drawPath();    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{    		me.drawPath();
+    	{    		//me.drawPath();
     		me.routeLPU(lat, lon, i+1);
     	};
     }
@@ -111,7 +111,7 @@ OLMap.prototype.hideRadarWaiter =  function()
 {	$("#radar_arrow").hide();
     $("#radar_back").hide();
 	$("#radar_arrow").stopRotate();}
-
+/*
 OLMap.prototype.pntsFromYData =  function(data)
 {
 	var points = JSON.parse(data);
@@ -123,4 +123,4 @@ OLMap.prototype.drawPath =  function(data)
 {
 	var points = this.pntsFromYData(data);
 
-}
+}   */
