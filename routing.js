@@ -114,14 +114,14 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData =  function(data)
 {
-	var points = JSON && JSON.parse(data) || $.parseJSON(data);
-	return points;
+//	var points = JSON && JSON.parse(data) || $.parseJSON(data);
+//	return points;
 }
 
 
 OLMap.prototype.drawPath =  function(data)
 {
-	var points = this.pntsFromYData(data);
+//	var points = this.pntsFromYData(data);
 	alert(data);
 
 }
