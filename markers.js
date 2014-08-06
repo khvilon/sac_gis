@@ -39,8 +39,6 @@ var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
 
 	this.addMarkersPopup(this.lpuLayer, this.createLpusPopupHtml , null);
 
-
-
     return true;
 }
 
@@ -111,6 +109,22 @@ OLMap.prototype.createRequisitionsPopupHtml =  function(attr)
     return html;
 }
 
+OLMap.prototype.createStationsPopupHtml =  function(attr)
+{
+
+    html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 200%;';
+    html += 'height: 214px; width: 230px; ">';
+    html += '<div style="position: absolute; top: 25px; left: 20px; color: white; padding-top: 10px;">';
+    html += '<table cellpadding = 1px cellspacing=2px width=185px border=0'+
+    ' style="color: white; font-size: 12px; font-family: arial">';
+    html += '<tr><td style="white-space: no-wrap;">' + attr.name + '</td></tr>';
+    html +=  '</table></div>';
+    html +=  '<div class="close" style="position: absolute; top: 23px; right: 25px;'+
+        ' " onclick="window.application.olmap.popup.destroy()"></div>';
+    html +=  '</div>';
+    return html;
+}
+
 OLMap.prototype.addMarkersPopup =  function(layer, createHTMLFunction, onPopupClick)
 {
      var me = this;
@@ -169,3 +183,28 @@ OLMap.prototype.addRequisition =  function(attr)
             attr.type + '_' + attr.color + '.gif';
  this.addMarker(this.requisitionsLayer, attr.lat, attr.lon, attr);
 }
+
+
+
+
+OLMap.prototype.addStations =  function(data, onPopupClick)
+{
+
+  if(data == null) return false;
+  	this.stationsLayer.destroyFeatures();
+  	var self = this;
+	for(var i = 0; i < data.length; i++)
+    {
+        data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/_' + data[i].color + '.png';
+
+        data[i].poppedup = false;
+
+        this.addMarker(this.stationsLayer, data[i].lat, data[i].lon, data[i]);
+    }
+
+
+	this.map.events.register('featureclick', this.stationsLayer, null);
+
+    this.addMarkersPopup(this.stationsLayer, this.createStationsPopupHtml , onPopupClick);
+    return true;
+};

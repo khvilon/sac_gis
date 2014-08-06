@@ -35,6 +35,14 @@ OLVectorStyle =
 	  	graphicHeight: 28,
 	  	pointRadius: 100
 	}),
+
+	stations: new OpenLayers.StyleMap(
+   	{
+        externalGraphic: "${path}",
+	  	graphicWidth: 43,
+	  	graphicHeight: 43,
+	  	pointRadius: 100
+	}),
 };
 
 
@@ -58,8 +66,9 @@ OLMap.prototype.addVectorLayers = function()
 
 	   this.ambulanceLayer = addVectorLayer("Скорая", OLVectorStyle.ambulance);
 	}
-
-    if (this.type == "avto")
+    else if (this.type == "vimpel")
+	   this.stationsLayer = addVectorLayer("Базовые станции", OLVectorStyle.stations);
+    else if (this.type == "avto")
 	   this.requisitionsLayer = addVectorLayer("Обращения", OLVectorStyle.requisitions);
 
 
