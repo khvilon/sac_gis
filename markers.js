@@ -117,7 +117,7 @@ OLMap.prototype.createStationsPopupHtml =  function(attr)
     html += '<div style="position: absolute; top: 25px; left: 20px; color: white; padding-top: 10px;">';
     html += '<table cellpadding = 1px cellspacing=2px width=185px border=0'+
     ' style="color: white; font-size: 12px; font-family: arial">';
-    html += '<tr><td style="white-space: no-wrap;">' + attr.name + '</td></tr>';
+    html += '<tr><td style="white-space: no-wrap;">' + attr.position_addressstring_norm + '</td></tr>';
     html +=  '</table></div>';
     html +=  '<div class="close" style="position: absolute; top: 23px; right: 25px;'+
         ' " onclick="window.application.olmap.popup.destroy()"></div>';
@@ -200,7 +200,7 @@ OLMap.prototype.addStations =  function(data, onPopupClick)
 
         data[i].poppedup = false;
 
-        this.addMarker(this.stationsLayer, data[i].lat, data[i].lon, data[i]);
+        this.addMarker(this.stationsLayer, data[i].position_latitude, data[i]..position_longitude, data[i]);
     }
 
 
