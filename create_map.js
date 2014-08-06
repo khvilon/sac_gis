@@ -56,7 +56,7 @@ OLMap.prototype.addOSMLocalLayer =  function()
 
 OLMap.prototype.addBaseLayers = function()
 {
-	if (this.type == "lpu") this.addMapserverLayers();this.addOSMLayer();
+	if (this.type == "lpu") this.addMapserverLayers();//this.addOSMLayer();}
 	else if (this.type == "avto") this.addMapserverLayers();
 	else if (this.type == "vimpel") this.addMapserverLayers();
 }
