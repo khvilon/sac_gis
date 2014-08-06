@@ -200,7 +200,7 @@ OLMap.prototype.addStations =  function(data, onPopupClick)
 
         data[i].poppedup = false;
 
-        this.addMarker(this.stationsLayer, data[i].position_latitude, data[i]..position_longitude, data[i]);
+        this.addMarker(this.stationsLayer, data[i].position_latitude, data[i].position_longitude, data[i]);
     }
 
 
