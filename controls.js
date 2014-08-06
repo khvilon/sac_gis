@@ -130,6 +130,7 @@ OLMap.prototype.addLayersMenu = function()
 
 	if(this.lpuLayer != undefined)addLayerControl(this.lpuLayer);
 	else if(this.requisitionsLayer != undefined)addLayerControl(this.requisitionsLayer);
+	else if(this.stationsLayer != undefined)addLayerControl(this.stationsLayer);
 
 	addLayerControl(this.roadLayer);
 	addLayerControl(this.waterLayer);
