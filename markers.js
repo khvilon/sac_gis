@@ -195,7 +195,7 @@ OLMap.prototype.addStations =  function(data, onPopupClick)
   	var self = this;
 	for(var i = 0; i < data.length; i++)
     {
-     ..   data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/_' + data[i].color + '.png';
+     //   data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/_' + data[i].color + '.png';
          data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/station_green.png';
 
         data[i].poppedup = false;
