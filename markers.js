@@ -114,10 +114,10 @@ OLMap.prototype.createStationsPopupHtml =  function(attr)
      if(attr.processkind_code == 'BS_CREATION') attr.processkind_code = 'Строительство';
      else attr.processkind_code = 'Модернизация';
     html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 200%;';
-    html += 'height: 214px; width: 230px; ">';
-    html += '<div style="position: absolute; top: 25px; left: 20px; color: white; padding-top: 10px;">';
+    html += 'height: 285px; width: 280px; ">';
+    html += '<div style="position: absolute; top: 35px; left: 20px; color: white; padding-top: 10px;">';
     html += '<table cellpadding = 1px cellspacing=2px width=185px border=0'+
-    ' style="color: white; font-size: 12px; font-family: arial">';
+    ' style="color: white; font-size: 12px; font-family: arial; padding: 4px">';
     html += '<tr><td>ГФК</td><td style="white-space: no-wrap;">' + attr.gfk + '</td></tr>';
     html += '<tr><td>Код ЕРП</td><td style="white-space: no-wrap;">' + attr.position_code + '</td></tr>';
     html += '<tr><td>Наименование позиции</td><td style="white-space: no-wrap;">' + attr.position_name + '</td></tr>';
@@ -150,6 +150,9 @@ OLMap.prototype.addMarkersPopup =  function(layer, createHTMLFunction, onPopupCl
 
         var pWidth = 240;
         var pHeight = 112;
+        if (this.type == "lpu")
+        {        	var pWidth = 290;
+        	var pHeight = 290;        }
 
         //var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(pWidth/2+10,pHeight+10)};
         var offsetX =  pWidth/2;
