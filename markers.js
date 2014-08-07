@@ -153,7 +153,7 @@ OLMap.prototype.addMarkersPopup =  function(layer, createHTMLFunction, onPopupCl
 
         var pWidth = 240;
         var pHeight = 112;
-        if (this.type == "vimpel")
+        if (me.type == "vimpel")
         {        	pWidth = 320;
         	pHeight = 320;        }
 
