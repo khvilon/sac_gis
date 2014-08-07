@@ -111,6 +111,9 @@ OLMap.prototype.createRequisitionsPopupHtml =  function(attr)
 
 OLMap.prototype.createStationsPopupHtml =  function(attr)
 {
+	function addRow(name, val)
+	{		return '<tr><td>'+name+'</td><td style="white-space: no-wrap; padding: 4px;">' + val + '</td></tr>';	}
+
      if(attr.processkind_code == 'BS_CREATION') attr.processkind_code = 'Строительство';
      else attr.processkind_code = 'Модернизация';
     html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 100%;';
@@ -118,7 +121,7 @@ OLMap.prototype.createStationsPopupHtml =  function(attr)
     html += '<div style="position: absolute; top: 35px; left: 20px; color: white; padding-top: 10px;">';
     html += '<table cellpadding = 1px cellspacing=2px width=185px border=0'+
     ' style="color: white; font-size: 12px; font-family: arial; padding: 4px">';
-    html += '<tr><td>ГФК</td><td style="white-space: no-wrap;">' + attr.gfk + '</td></tr>';
+    html += addRow('ГФК',attr.gfk);//'<tr><td>ГФК</td><td style="white-space: no-wrap;">' + attr.gfk + '</td></tr>';
     html += '<tr><td>Код ЕРП</td><td style="white-space: no-wrap;">' + attr.position_code + '</td></tr>';
     html += '<tr><td>Наименование позиции</td><td style="white-space: no-wrap;">' + attr.position_name + '</td></tr>';
     html += '<tr><td>Тип позиции</td><td style="white-space: no-wrap;">' + attr.positiongroup_name + '</td></tr>';
