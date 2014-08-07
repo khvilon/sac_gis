@@ -25,7 +25,7 @@ OLMap.prototype.addLpus =  function(lpus)
 	this.lpus = lpus;
 
     if(lpus == null) return false;
-var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
+	var path = this.hostIP + '/static/compile/js/olmap/images/lpu/lpu_red.png';
 	for(var i = 0; i < lpus.length; i++)
     {
     	lpus[i].path = path;
@@ -113,7 +113,7 @@ OLMap.prototype.createStationsPopupHtml =  function(attr)
 {
      if(attr.processkind_code == 'BS_CREATION') attr.processkind_code = 'Строительство';
      else attr.processkind_code = 'Модернизация';
-    html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 200%;';
+    html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 100%;';
     html += 'height: 285px; width: 280px; ">';
     html += '<div style="position: absolute; top: 35px; left: 20px; color: white; padding-top: 10px;">';
     html += '<table cellpadding = 1px cellspacing=2px width=185px border=0'+
@@ -151,8 +151,8 @@ OLMap.prototype.addMarkersPopup =  function(layer, createHTMLFunction, onPopupCl
         var pWidth = 240;
         var pHeight = 112;
         if (this.type == "lpu")
-        {        	var pWidth = 290;
-        	var pHeight = 290;        }
+        {        	var pWidth = 320;
+        	var pHeight = 320;        }
 
         //var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(pWidth/2+10,pHeight+10)};
         var offsetX =  pWidth/2;
@@ -208,8 +208,8 @@ OLMap.prototype.addStations =  function(data, onPopupClick)
   	var self = this;
 	for(var i = 0; i < data.length; i++)
     {
-     //   data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/_' + data[i].color + '.png';
-         data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/station_green.png';
+        data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/station_' + data[i].color + '.png';
+      //   data[i].path = this.hostIP + '/static/compile/js/olmap/images/stations/station_green.png';
 
         data[i].poppedup = false;
 
