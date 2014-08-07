@@ -117,7 +117,7 @@ OLMap.prototype.createStationsPopupHtml =  function(attr)
      if(attr.processkind_code == 'BS_CREATION') attr.processkind_code = 'Строительство';
      else attr.processkind_code = 'Модернизация';
     html =   '<div style="background-image: url('+attr.popup_bg_path+'); background-size: 100% 100%;';
-    html += 'height: 285px; width: 280px; ">';
+    html += 'height: 330px; width: 280px; ">';
     html += '<div style="position: absolute; top: 35px; left: 20px; color: white; padding-top: 10px;">';
     html += '<table cellpadding = 1px cellspacing=2px width=230px border=0'+
     ' style="color: white; font-size: 12px; font-family: arial; padding: 4px">';
@@ -155,7 +155,7 @@ OLMap.prototype.addMarkersPopup =  function(layer, createHTMLFunction, onPopupCl
         var pHeight = 112;
         if (me.type == "vimpel")
         {        	pWidth = 285;
-        	pHeight = 320;        }
+        	pHeight = 350;        }
 
         //var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(pWidth/2+10,pHeight+10)};
         var offsetX =  pWidth/2;
