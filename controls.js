@@ -100,8 +100,14 @@ OLMap.prototype.addLayersMenu = function()
 		var pathFalse = me.path + '/images/layers_menu/tick_false.png';
 
 		var chbDiv = document.createElement('img');
-		chbDiv.src=pathTrue;
-		chbDiv.checked = true;
+
+		chbDiv.checked = layer.visibility;
+		if(chbDiv.checked) chbDiv.src=pathTrue;
+		else chbDiv.src=pathFalse;
+
+		//chbDiv.src=pathTrue;
+
+
 		chbDiv.onclick = function()
 		{
 			chbDiv.checked = !chbDiv.checked;
