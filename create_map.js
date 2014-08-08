@@ -38,7 +38,7 @@ OLMap.prototype.addMapserverLayers =  function()
 	this.msLayer = this.addMapserverLayer('osm@g', "BaseMapServer", true);
 	this.waterLayer = this.addMapserverLayer('water@g', "Реки и озера");
 	this.roadLayer = this.addMapserverLayer('road@g', "Дороги");
-	this.railwayLayer = this.addMapserverLayer('railway@g', "Железные дороги");
+	this.railwayLayer = this.addMapserverLayer('railway@g', "Железные дороги", {visibility: false});
 }
 
 OLMap.prototype.addOSMLayer =  function()
