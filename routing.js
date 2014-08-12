@@ -124,8 +124,8 @@ OLMap.prototype.pntsFromYData = function(data)
     {
     	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
 	    {
-	    	var lon = coordinates[0];
-	    	var lat = coordinates[1];
+	    	var lon = coords[0];
+	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
 	    	obj.points.push(this.newPnt(lat, lon));
 	    });
