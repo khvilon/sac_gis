@@ -67,8 +67,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
         "&lang=ru-RU";
 
 
-//	url = window.btoa(url);
-  // 	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
+	url = window.btoa(url);
+   	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
 
 
 
@@ -90,8 +90,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     }
 
 
-  // $.get(ajaxPath,callback);
-    $.get(url,callback);
+   $.get(ajaxPath,callback);
+   // $.get(url,callback);
   /*  $.ajax({
 	  type:     "GET",
 	  url:     url,
