@@ -128,7 +128,7 @@ OLMap.prototype.hideRadarWaiter =  function()
 OLMap.prototype.pntsFromYData = function(data)
 {
   //  data = data.replace(new RegExp("&quot;",'g'),'"');
-	var obj = data;//$.parseJSON(data);
+	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
 	var route_points = [];
