@@ -26,7 +26,7 @@ OLMap.prototype.initRoute =  function()
         	$('#' + me.divName).css('cursor', 'default');
          	var lonlat = me.toEPSG4326(me.map.getLonLatFromPixel(e.xy));
 
-			me.map.setCenter(lonlat);
+			me.map.setCenter(me.map.getLonLatFromPixel(e.xy));
             me.routeStartSelected(lonlat.lat,lonlat.lon);
 		}
 
@@ -60,8 +60,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
    	if(this.lpus.length == 0) return;
 
 	var url = "http://route-maps.yandex.ru/1.x/?" +
-    	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
-    	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
+    	"format=json&avoidTrafficJams=false&rll=" + lat + "," + lon +
+    	"~" + this.lpus[i].lat + "," + this.lpus[i].lon +
         "&lang=ru-RU";
 
 	url = window.btoa(url);
@@ -74,12 +74,12 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		me.drawPath();    		me.hideRadarWaiter();    	};
+    		me.drawPath(data);    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{    		me.drawPath();
+    	{    		me.drawPath(data);
     		me.routeLPU(lat, lon, i+1);
     	};
     }
