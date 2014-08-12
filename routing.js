@@ -114,7 +114,7 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData = function(data)
 {
-    data = data.replace(new RegExp("&quote;",'g'),'"');
+    data = data.replace(new RegExp("&quot;",'g'),'"');
     console.log("data2 " + data);
 	var obj = $.parseJSON(data);
 	console.log("obj " + obj);
