@@ -119,20 +119,23 @@ OLMap.prototype.pntsFromYData = function(data)
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
 	var route_points = [];
-
-	$.each(  obj.features[1].features, function(key, linePart )
-    {   console.log("p " + route_points);
-    	var route_points2 = route_points;
-    	//console.log("l " + linePart.geometry.geometries[0].coordinates.length);
-    	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
+    var me = this;
+	for(var i = 0; i <  obj.features[1].features.length; i++)
+	{		$.each(   obj.features[1].features[i].geometry.geometries[0].coordinates,
+			function(key, coords )
 	    {
 	    	var lon = coords[0];
 	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
-	    	console.log("pp " + route_points2);
-	    	route_points2.push(this.newPnt(lat, lon));
-	    });
-    });
+	    	console.log("pp " + route_points);
+	    	route_points.push(me.newPnt(lat, lon));
+	    });	}
+	/*$.each(  obj.features[1].features, function(key, linePart )
+    {   console.log("p " + route_points);
+    	var route_points2 = route_points;
+    	//console.log("l " + linePart.geometry.geometries[0].coordinates.length);
+
+    });*/
 
 	//console.log("obj " + points);
 	obj.points = route_points;
