@@ -118,7 +118,7 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	obj.points = [];
+	var points = [];
 
 	$.each(  obj.features[1].features, function(key, linePart )
     {
@@ -127,11 +127,12 @@ OLMap.prototype.pntsFromYData = function(data)
 	    	var lon = coords[0];
 	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
-	    	obj.points.push(this.newPnt(lat, lon));
+	    	points.push(this.newPnt(lat, lon));
 	    });
     });
 
 	//console.log("obj " + points);
+	obj.points = points;
 	return obj;
 }
 
