@@ -118,18 +118,19 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	var points = new Array();
+	var points = [];
 
-	/*$.each(  obj.features[1].features, function(key, linePart )
+	$.each(  obj.features[1].features, function(key, linePart )
     {
-    	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
+    	console.log("l " + linePart.geometry.geometries[0].coordinates.length);
+    	/*$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
 	    {
 	    	var lon = coords[0];
 	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
 	    	points.push(this.newPnt(lat, lon));
-	    });
-    });  */
+	    });*/
+    });
 
 	//console.log("obj " + points);
 	obj.points = points;
