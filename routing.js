@@ -121,15 +121,16 @@ OLMap.prototype.pntsFromYData = function(data)
 	var points = [];
 
 	$.each(  obj.features[1].features, function(key, linePart )
-    {
-    	console.log("l " + linePart.geometry.geometries[0].coordinates.length);
-    	/*$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
+    {   console.log("p " + points);
+    	//console.log("l " + linePart.geometry.geometries[0].coordinates.length);
+    	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
 	    {
 	    	var lon = coords[0];
 	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
-	    	points.push(this.newPnt(lat, lon));
-	    });*/
+	    	console.log("pp " + points);
+	    	//points.push(this.newPnt(lat, lon));
+	    });
     });
 
 	//console.log("obj " + points);
