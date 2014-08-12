@@ -66,17 +66,9 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
-        $.ajax({
-	  type:     "GET",
-	  url:     url,
-	  dataType: "jsonp",
-	  success: function(data){
-	    console.log("daaaata! " + data);
-	  }
-	});
 
-	url = window.btoa(url);
-   	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
+//	url = window.btoa(url);
+  // 	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
 
 
 
@@ -98,7 +90,15 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     }
 
 
-   $.get(ajaxPath,callback);
+  // $.get(ajaxPath,callback);
+
+    $.ajax({
+	  type:     "GET",
+	  url:     url,
+	  dataType: "jsonp",
+	  success: callback
+	});
+
 
 }
 
@@ -127,8 +127,8 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData = function(data)
 {
-    data = data.replace(new RegExp("&quot;",'g'),'"');
-	var obj = $.parseJSON(data);
+  //  data = data.replace(new RegExp("&quot;",'g'),'"');
+	var obj = data;//$.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
 	var route_points = [];
