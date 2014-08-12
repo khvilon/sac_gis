@@ -91,13 +91,13 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 
 
   // $.get(ajaxPath,callback);
-
-    $.ajax({
+    $.get(url,callback);
+  /*  $.ajax({
 	  type:     "GET",
 	  url:     url,
 	  dataType: "jsonp",
 	  success: callback
-	});
+	}); */
 
 
 }
