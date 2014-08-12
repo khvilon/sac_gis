@@ -119,14 +119,16 @@ OLMap.prototype.pntsFromYData = function(data)
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
 	var points = [];
-   /*
-	$.each(  obj.features[1].features, function( linePart )
+
+	var obj2 = obj.features[1].features;
+
+	$.each(  obj2, function(key, linePart )
     {
     	var p = linePart.geometry.geometries[0];
     	console.log("p " + p);
     });
 
-	console.log("obj " + points); */
+	console.log("obj " + points);
 	return points;
 }
 
