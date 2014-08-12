@@ -87,12 +87,12 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		setTieout(me.drawPath(data), 0);    		me.hideRadarWaiter();    	};
+    		setTimeout(me.drawPath(data), 0);    		me.hideRadarWaiter();    	};
     }
     else
     {
     	callback = function(data)
-    	{    		setTieout(me.drawPath(data), 0);
+    	{    		setTimeout(me.drawPath(data), 0);
     		me.routeLPU(lat, lon, i+1);
     	};
     }
