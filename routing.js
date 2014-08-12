@@ -118,23 +118,23 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	this.points = [];
+	var route_points = new Array();
 
 	$.each(  obj.features[1].features, function(key, linePart )
-    {   console.log("p " + this.points);
+    {   console.log("p " + route_points);
     	//console.log("l " + linePart.geometry.geometries[0].coordinates.length);
     	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
 	    {
 	    	var lon = coords[0];
 	    	var lat = coords[1];
 	    	console.log("coords " + lon + " " + lat);
-	    	console.log("pp " + this.points);
-	    	this.points.push(this.newPnt(lat, lon));
+	    	console.log("pp " + route_points);
+	    	route_points.push(this.newPnt(lat, lon));
 	    });
     });
 
 	//console.log("obj " + points);
-	obj.points = this.points;
+	obj.points = route_points;
 	return obj;
 }
 
