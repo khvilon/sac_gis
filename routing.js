@@ -115,10 +115,19 @@ OLMap.prototype.hideRadarWaiter =  function()
 OLMap.prototype.pntsFromYData = function(data)
 {
     data = data.replace(new RegExp("&quot;",'g'),'"');
-    console.log("data2 " + data);
 	var obj = $.parseJSON(data);
-	console.log("obj " + obj);
-	return obj;
+	if(obj.features == null) return;
+	if(obj.features.length < 3) return;
+	var points = [];
+
+	$.each(  obj.features[1].features, function( linePart )
+    {
+    	var p = linePart.geometry.geometries[0];
+    	console.log("p " + p);
+    });
+
+	console.log("obj " + points);
+	return points;
 }
 
 OLMap.prototype.pathStyle =
@@ -135,7 +144,7 @@ OLMap.prototype.drawPath =  function(data)
 	if(data == null) return;
 	if(data.indexOf("Bad request") !=-1) return;
 	var points = this.pntsFromYData(data);
-
+    if(points == null) return;
 
     var line = new OpenLayers.Geometry.LineString(points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
