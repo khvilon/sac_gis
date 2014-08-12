@@ -60,8 +60,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
    	if(this.lpus.length == 0) return;
 
 	var url = "http://route-maps.yandex.ru/1.x/?" +
-    	"format=json&avoidTrafficJams=false&rll=" + lat + "," + lon +
-    	"~" + this.lpus[i].lat + "," + this.lpus[i].lon +
+    	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
+    	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
 	url = window.btoa(url);
@@ -114,8 +114,7 @@ OLMap.prototype.hideRadarWaiter =  function()
 
 OLMap.prototype.pntsFromYData = function(data)
 {
-	console.log("data " + data);
-	if(data == null) return null;
+
 	var obj = $.parseJSON(data);
 	console.log("obj " + obj);
 	return obj;
@@ -131,8 +130,11 @@ OLMap.prototype.pathStyle =
 
 OLMap.prototype.drawPath =  function(data)
 {
-	var points = this.pntsFromYData(data);
+	console.log("data " + data);
 	if(data == null) return;
+	if(data[0] != '{') return;
+	var points = this.pntsFromYData(data);
+
 
     var line = new OpenLayers.Geometry.LineString(points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
