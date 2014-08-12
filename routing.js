@@ -118,18 +118,21 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	var points = [];
+	obj.points = [];
 
-	var obj2 = obj.features[1].features;
-
-	$.each(  obj2, function(key, linePart )
+	$.each(  obj.features[1].features, function(key, linePart )
     {
-    	var p = linePart.geometry.geometries[0];
-    	console.log("p " + p);
+    	$.each(  linePart.geometry.geometries[0].coordinates, function(key, coords )
+	    {
+	    	var lon = coordinates[0];
+	    	var lat = coordinates[1];
+	    	console.log("coords " + lon + " " + lat);
+	    	obj.points.push(this.newPnt(lat, lon));
+	    });
     });
 
-	console.log("obj " + points);
-	return points;
+	//console.log("obj " + points);
+	return obj;
 }
 
 OLMap.prototype.pathStyle =
@@ -145,10 +148,10 @@ OLMap.prototype.drawPath =  function(data)
 	console.log("data " + data);
 	if(data == null) return;
 	if(data.indexOf("Bad request") !=-1) return;
-	var points = this.pntsFromYData(data);
-    if(points == null) return;
+	var obj = this.pntsFromYData(data);
+    if(obj.points == null) return;
 
-    var line = new OpenLayers.Geometry.LineString(points);
+    var line = new OpenLayers.Geometry.LineString(obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
