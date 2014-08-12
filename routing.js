@@ -118,7 +118,7 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	var points = [];
+	var points = new Array();
 
 	$.each(  obj.features[1].features, function(key, linePart )
     {
