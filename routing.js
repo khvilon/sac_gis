@@ -59,13 +59,26 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
    	if(this.lpus.length == 0) return;
 
+
+
 	var url = "http://route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
+        $.ajax({
+	  type:     "GET",
+	  url:     url,
+	  dataType: "jsonp",
+	  success: function(data){
+	    console.log("daaaata! " + data);
+	  }
+	});
+
 	url = window.btoa(url);
    	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
+
+
 
 	var me = this;
 
