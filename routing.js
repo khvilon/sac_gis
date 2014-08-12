@@ -133,7 +133,7 @@ OLMap.prototype.drawPath =  function(data)
 {
 	console.log("data " + data);
 	if(data == null) return;
-	if(data[0] != '{') return;
+	if(data.indexOf("Bad request") !=-1) return;
 	var points = this.pntsFromYData(data);
 
 
