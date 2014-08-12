@@ -61,7 +61,7 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 
 
 
-	var url = "http://route-maps.yandex.ru/1.x/?" +
+	var url = "route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
