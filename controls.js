@@ -68,7 +68,7 @@ OLMap.prototype.addCustomControls = function()
 	addButton('gis_btn_left', 'arrow_right', '', bOffset, 50, function(){me.map.pan(-panStep, 0);}, 'y');
 	addButton('gis_btn_right', 'arrow_left', '', -bOffset, 50, function(){me.map.pan(panStep, 0);}, 'y');
 
-	addButton('gis_btn_route', 'route', '', bOffset+55, bOffset, function(){me.route();});
+	addButton('gis_btn_route', 'ambulance_button', '', bOffset+55, bOffset, function(){me.route();});
 
 }
 
