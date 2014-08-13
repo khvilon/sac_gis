@@ -44,8 +44,17 @@ OLMap.prototype.initRoute =  function()
 
 OLMap.prototype.route =  function()
 {
-	$('#' + this.divName).css('cursor', 'crosshair');
-	this.clickControl.activate();
+	if(this.clickControl.active)
+	{
+		me.clickControl.deactivate();
+        $('#' + me.divName).css('cursor', 'default');
+	}
+	else
+	{
+		this.ambulanceLayer.removeAllFeatures();
+		$('#' + this.divName).css('cursor', 'crosshair');
+		this.clickControl.activate();
+	}
 }
 
 
@@ -66,11 +75,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
-
-	url = encodeURIComponent(url);//window.btoa(url).replace(new RegExp("",'g'),'"');;
+	url = encodeURIComponent(url);
    	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
-
-
 
 	var me = this;
 
@@ -91,15 +97,6 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
 
 
    $.get(ajaxPath,callback);
-   // $.get(url,callback);
-  /*  $.ajax({
-	  type:     "GET",
-	  url:     url,
-	  dataType: "jsonp",
-	  success: callback
-	}); */
-
-
 }
 
 
@@ -116,7 +113,7 @@ OLMap.prototype.showRadarWaiter =  function()
 		angle:-90,
 		animateTo:animateTo,
 		duration:duration,
-		center: ["50%", "513px"],//"500px"],
+		center: ["50%", "513px"],
 	});
 }
 
