@@ -162,10 +162,12 @@ OLMap.prototype.drawPath =  function(data)
     if(obj.points == null) return;
 
     var line = new OpenLayers.Geometry.LineString(obj.points);
-    var options = {color: 'green'};
-    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) options.color='red';
+	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
+
+    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) lineFeature.attributes.color='green';
     else if(obj.time < maxMinutes) options.color='yellow';
-	var lineFeature = new OpenLayers.Feature.Vector(line, options, this.pathStyle);
+    else lineFeature.attributes.color='red';
+
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
