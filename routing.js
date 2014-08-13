@@ -162,8 +162,8 @@ OLMap.prototype.drawPath =  function(data)
     if(obj.points == null) return;
 
     var line = new OpenLayers.Geometry.LineString(obj.points);
-    var options = {color: '#f10000'};
-    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) options.color='55ee55';
+    var options = {color: 'green'};
+    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) options.color='red';
     else if(obj.time < maxMinutes) options.color='yellow';
 	var lineFeature = new OpenLayers.Feature.Vector(line, options, this.pathStyle);
 	lineFeature.strokeColor = 'red';
