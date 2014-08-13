@@ -146,7 +146,7 @@ OLMap.prototype.pntsFromYData = function(data)
 
 OLMap.prototype.pathStyle =
 {
-		strokeColor: "${color}",
+		//strokeColor: "${color}",
 		strokeOpacity: 0.6,
     	strokeWidth: 3
 }
@@ -161,12 +161,16 @@ OLMap.prototype.drawPath =  function(data)
 	var obj = this.pntsFromYData(data);
     if(obj.points == null) return;
 
+    /*if(obj.time < maxMinutes && obj.timeJams < maxMinutes) lineFeature.attributes.color='green';
+    else if(obj.time < maxMinutes) options.color='yellow';
+    else lineFeature.attributes.color='red';    */
+
+    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) this.pathStyle.strokeColor='green';
+    else if(obj.time < maxMinutes) this.pathStyle.strokeColor='yellow';
+    else this.pathStyle.strokeColor='red';
+
     var line = new OpenLayers.Geometry.LineString(obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
-
-    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) lineFeature.attributes.color='green';
-    else if(obj.time < maxMinutes) options.color='yellow';
-    else lineFeature.attributes.color='red';
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
