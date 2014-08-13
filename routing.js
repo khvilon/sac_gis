@@ -154,7 +154,7 @@ OLMap.prototype.pathStyle =
 
 OLMap.prototype.drawPath =  function(data)
 {
-	var maxMinutes = 21;
+	var maxMinutes = 31;
 
 	if(data == null) return;
 	if(data.indexOf("Bad request") !=-1) return;
