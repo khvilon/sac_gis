@@ -131,7 +131,7 @@ OLMap.prototype.pntsFromYData = function(data)
 	var obj = $.parseJSON(data);
 	if(obj.features == null) return;
 	if(obj.features.length < 3) return;
-	var route_points = [];
+	obj.points = [];
     var me = this;
 	for(var i = 0; i <  obj.features[1].features.length; i++)
 	{		$.each(   obj.features[1].features[i].geometry.geometries[0].coordinates,
@@ -139,10 +139,11 @@ OLMap.prototype.pntsFromYData = function(data)
 	    {
 	    	var lon = coords[0];
 	    	var lat = coords[1];
-	    	route_points.push(me.newPnt(lat, lon));
+	    	obj.points.push(me.newPnt(lat, lon));
 	    });	}
+	obj.time =   obj.features[1].properties.time/60;
+	obj.timeJams = obj.features[1].properties.jamsTime/60;
 
-	obj.points = route_points;
 	return obj;
 }
 
@@ -163,6 +164,7 @@ OLMap.prototype.drawPath =  function(data)
 
     var line = new OpenLayers.Geometry.LineString(obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
+	lineFeature.strokeColor = 'red';
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
