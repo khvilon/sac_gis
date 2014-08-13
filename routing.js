@@ -67,7 +67,7 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
         "&lang=ru-RU";
 
 
-	url = window.btoa(url);
+	url = encodeURI(url);//window.btoa(url);
    	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
 
 
