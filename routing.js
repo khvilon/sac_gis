@@ -166,7 +166,6 @@ OLMap.prototype.drawPath =  function(data)
     if(obj.time < maxMinutes && obj.timeJams < maxMinutes) options.color='red';
     else if(obj.time < maxMinutes) options.color='yellow';
 	var lineFeature = new OpenLayers.Feature.Vector(line, options, this.pathStyle);
-	lineFeature.strokeColor = 'red';
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
