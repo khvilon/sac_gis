@@ -146,21 +146,26 @@ OLMap.prototype.pntsFromYData = function(data)
 
 OLMap.prototype.pathStyle =
 {
-		strokeColor: "blue",
+		strokeColor: "${color}",
 		strokeOpacity: 0.6,
-    	strokeWidth: 4
+    	strokeWidth: 3
 }
 
 
 OLMap.prototype.drawPath =  function(data)
 {
+	var maxMinutes = 21;
+
 	if(data == null) return;
 	if(data.indexOf("Bad request") !=-1) return;
 	var obj = this.pntsFromYData(data);
     if(obj.points == null) return;
 
     var line = new OpenLayers.Geometry.LineString(obj.points);
-	var lineFeature = new OpenLayers.Feature.Vector(line, null, this.pathStyle);
+    var options = {color: '#f10000'};
+    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) options.color='55ee55';
+    else if(obj.time < maxMinutes) options.color='yellow';
+	var lineFeature = new OpenLayers.Feature.Vector(line, options, this.pathStyle);
 	lineFeature.strokeColor = 'red';
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
