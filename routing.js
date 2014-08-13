@@ -138,8 +138,8 @@ OLMap.prototype.pntsFromYData = function(data)
 	    	var lat = coords[1];
 	    	obj.points.push(me.newPnt(lat, lon));
 	    });	}
-	obj.time =   parseInt(obj.features[1].properties.time)/60;
-	obj.timeJams = parseInt(obj.features[1].properties.jamsTime)/60;
+	obj.time =   parseInt(obj.features[1].properties.RouterRouteMetaData.time)/60;
+	obj.timeJams = parseInt(obj.features[1].properties.RouterRouteMetaData.jamsTime)/60;
 
 	return obj;
 }
