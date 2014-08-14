@@ -181,9 +181,10 @@ OLMap.prototype.drawPath =  function(data)
 
 OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
 {	if(ind == obj.points.length)
-	{		me.ambulancePathLayer.redraw();
+	{
+		me.ambulancePathLayer.redraw();		if(obj.status == 2) {line.destroy(); me.ambulancePathLayer.redraw();}
 		me.lpusPathToDraw--;
-	//	if(obj.status == 2)		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
+		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
 			me.hideRadarWaiter();
 		return;
 	}	line.addPoint(obj.points[ind]);
