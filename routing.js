@@ -197,7 +197,7 @@ OLMap.prototype.drawLineSlow =  function(me, lineFeature, line, obj, ind)
 		return;
 	}	line.addPoint(obj.points[ind]);
 
-	console.log("ii" + ind + " " + me.lpusPathToDraw + " " + step);
+	console.log("ii" + ind + " " + me.lpusPathToDraw + " " + obj.step);
 
 	if(ind%obj.step == 0)
 	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, lineFeature, line, obj, ind+1)}, 0.01);
