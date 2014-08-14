@@ -177,7 +177,7 @@ OLMap.prototype.drawPath =  function(data)
 
 	this.ambulancePathLayer.addFeatures([lineFeature]);
 
-	this.drawLineSlow(this, line, lineFeature, obj, 1);
+	this.drawLineSlow(this, lineFeature, line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
@@ -196,7 +196,7 @@ OLMap.prototype.drawLineSlow =  function(me, lineFeature, line, obj, ind)
 		return;
 	}	line.addPoint(obj.points[ind]);
 
-	console.log("ii" + ind + " " + me.allLpusPathsStarted + " " + me.lpusPathToDraw + " " + ind%(obj.points.length/10));
+	console.log("ii" + ind + " " + me.lpusPathToDraw + " " + ind%(obj.points.length/10));
 	var delay = 0;
 	if(ind%(obj.points.length/10) == 0)
 	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, lineFeature, line, obj, ind+1)}, 0.01);
