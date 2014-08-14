@@ -162,7 +162,7 @@ OLMap.prototype.drawPath =  function(data)
 
 	this.lpusPathToDraw++;
 
-    var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};
+    var pathStyle = {strokeOpacity: 0.6,strokeWidth: 5};
 
 	var colors = ['green', 'yellow', 'red'];
     if(obj.time < maxMinutes && obj.timeJams < maxMinutes) obj.status = 0;
