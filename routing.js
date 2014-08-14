@@ -159,7 +159,7 @@ OLMap.prototype.drawPath =  function(data)
     else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
     else pathStyle.strokeColor='red';
 
-    var line = new OpenLayers.Geometry.LineString([]);obj.points);
+    var line = new OpenLayers.Geometry.LineString([]);//obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
