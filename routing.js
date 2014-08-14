@@ -65,23 +65,30 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 	this.showRadarWaiter();
 	this.lpusPathToDraw = 0;
 	this.allLpusPathsStarted = false;
-	this.routeLPU(lat, lon, 0);
+	this.routeLPU(this, lat, lon, 0);
 }
 
-OLMap.prototype.routeLPU =  function(lat, lon, i)
-{
+OLMap.prototype.routeLPU =  function(me, lat, lon, i)
+{	if(me.lpusPathToDraw > 2)
+    {
+    	me = this;
+    	callback = function(data)
+    	{
+    		setTimeout(function(){me.routeLPU(me, lat, lon, i);}, 1000);
+    	};
+    }
+
+
 	var url = "route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
         "&lang=ru-RU";
 
 	url = encodeURIComponent(url);
-   	var ajaxPath =  this.hostIP + "/arm/proxy?url=" + url;
-
-	var me = this;
+   	var ajaxPath =  me.hostIP + "/arm/proxy?url=" + url;
 
     var callback;
-    if(i==this.lpus.length-1)
+    if(i==me.lpus.length-1)
     {
     	callback = function(data)
     	{
@@ -92,7 +99,7 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{    		setTimeout(me.drawPath(data), 0);
-    		me.routeLPU(lat, lon, i+1);
+    		me.routeLPU(me, lat, lon, i+1);
     	};
     }
 
@@ -191,8 +198,8 @@ OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
 
 	console.log("ii" + ind + " " + me.allLpusPathsStarted + " " + me.lpusPathToDraw);
 	var delay = 0;
-	if(ind%5 == 0)
-	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 0.1);
+	if(ind%10 == 0)
+	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 0.05);
 	}
 	else me.drawLineSlow(me, line, obj, ind+1);
 }
