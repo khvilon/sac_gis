@@ -178,8 +178,13 @@ OLMap.prototype.drawPath =  function(data)
 }
 
 OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
-{	me.lpusPathToDraw--;	if(ind == obj.points.length) {if(me.allLpusPathsStarted &&
-		me.lpusPathToDraw==0)me.hideRadarWaiter();return; }	line.addPoint(obj.points[ind]);
+{	me.lpusPathToDraw--;	if(ind == obj.points.length)
+	{		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
+			me.hideRadarWaiter();
+		return;
+	}	line.addPoint(obj.points[ind]);
 	me.ambulancePathLayer.redraw();
 	console.log("ii" + ind);
-	setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 2);}
+	var delay = 0;
+	if(ind%10) delay = 1;
+	setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, delay);}
