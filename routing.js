@@ -160,9 +160,11 @@ OLMap.prototype.drawPath =  function(data)
 
     var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};
 
-    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) pathStyle.strokeColor='green';
-    else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
-    else pathStyle.strokeColor='red';
+	var colors = ['green', 'yellow', 'red'];
+    if(obj.time < maxMinutes && obj.timeJams < maxMinutes) obj.status = 0;
+    else if(obj.time < maxMinutes) obj.status = 1;
+    else obj.status = 2;
+    pathStyle.strokeColor=colors[obj.status];
 
 	var p = [];
 	p.push(obj.points[0]);
@@ -180,7 +182,8 @@ OLMap.prototype.drawPath =  function(data)
 OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
 {	if(ind == obj.points.length)
 	{		me.ambulancePathLayer.redraw();
-		me.lpusPathToDraw--;		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
+		me.lpusPathToDraw--;
+	//	if(obj.status == 2)		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
 			me.hideRadarWaiter();
 		return;
 	}	line.addPoint(obj.points[ind]);
