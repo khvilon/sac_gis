@@ -163,12 +163,13 @@ OLMap.prototype.drawPath =  function(data)
     else pathStyle.strokeColor='red';
 
 	var p = [];
+	p.push(obj.points[0]);
     var line = new OpenLayers.Geometry.LineString(p);//obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
-	drawLineSlow =  function(line, obj, 0);
+	drawLineSlow =  function(line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
