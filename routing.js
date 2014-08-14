@@ -162,9 +162,7 @@ OLMap.prototype.drawPath =  function(data)
     else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
     else pathStyle.strokeColor='red';
 
-	var p = [];
-	p.push(obj.points[0]);
-    var line = new OpenLayers.Geometry.LineString(p);//obj.points);
+    var line = new OpenLayers.Geometry.LineString([]);//obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
@@ -177,4 +175,4 @@ OLMap.prototype.drawPath =  function(data)
 
 OLMap.prototype.drawLineSlow =  function(line, obj, ind)
 {	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
-	setTimeout(this.drawLineSlow(line, obj, ind+1), 10);}
+	setTimeout(this.drawLineSlow(line, obj, ind+1), 100);}
