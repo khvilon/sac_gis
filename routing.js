@@ -144,14 +144,6 @@ OLMap.prototype.pntsFromYData = function(data)
 	return obj;
 }
 
-OLMap.prototype.pathStyle =
-{
-		//strokeColor: "${color}",
-		strokeOpacity: 0.6,
-    	strokeWidth: 3
-}
-
-
 OLMap.prototype.drawPath =  function(data)
 {
 	var maxMinutes = 31;
@@ -167,12 +159,17 @@ OLMap.prototype.drawPath =  function(data)
     else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
     else pathStyle.strokeColor='red';
 
-    var line = new OpenLayers.Geometry.LineString(obj.points);
+    var line = new OpenLayers.Geometry.LineString([]);obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
+	drawLineSlow =  function(line, obj, 0);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
 }
+
+OLMap.prototype.drawLineSlow =  function(line, obj, ind)
+{	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
+	setTimeout(this.drawLineSlow(line, obj, ind+1), 10);}
