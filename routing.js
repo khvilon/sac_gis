@@ -153,10 +153,7 @@ OLMap.prototype.drawPath =  function(data)
 	var obj = this.pntsFromYData(data);
     if(obj.points == null) return;
 
-    var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};//new Object();
-   // pathStyle.strokeOpacity = 0.6;
-   // pathStyle.strokeWidth = 3;
-    //{strokeOpacity: 0.6,strokeWidth: 3}
+    var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};
 
     if(obj.time < maxMinutes && obj.timeJams < maxMinutes) pathStyle.strokeColor='green';
     else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
@@ -177,4 +174,5 @@ OLMap.prototype.drawPath =  function(data)
 
 OLMap.prototype.drawLineSlow =  function(line, obj, ind)
 {	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
+	this.ambulanceLayer.redraw();
 	setTimeout(this.drawLineSlow(line, obj, ind+1), 100);}
