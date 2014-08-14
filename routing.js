@@ -177,26 +177,29 @@ OLMap.prototype.drawPath =  function(data)
 
 	this.ambulancePathLayer.addFeatures([lineFeature]);
 
-	this.drawLineSlow(this, line, obj, 1);
+	this.drawLineSlow(this, line, lineFeature, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
 }
 
-OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
+OLMap.prototype.drawLineSlow =  function(me, lineFeature, line, obj, ind)
 {	if(ind == obj.points.length)
 	{
-		me.ambulancePathLayer.redraw();		if(obj.status == 2) {line.destroy(); me.ambulancePathLayer.redraw();}
+		me.ambulancePathLayer.redraw();		if(obj.status == 2)
+		{			me.ambulancePathLayer.destroyFeatures([lineFeature]);
+			me.ambulancePathLayer.redraw();
+		}
 		me.lpusPathToDraw--;
 		if(me.allLpusPathsStarted && me.lpusPathToDraw==0)
 			me.hideRadarWaiter();
 		return;
 	}	line.addPoint(obj.points[ind]);
 
-	console.log("ii" + ind + " " + me.allLpusPathsStarted + " " + me.lpusPathToDraw);
+	console.log("ii" + ind + " " + me.allLpusPathsStarted + " " + me.lpusPathToDraw + " " + ind%(obj.points.length/10));
 	var delay = 0;
-	if(ind%25 == 0)
-	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 0.01);
+	if(ind%(obj.points.length/10) == 0)
+	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, lineFeature, line, obj, ind+1)}, 0.01);
 	}
-	else me.drawLineSlow(me, line, obj, ind+1);
+	else me.drawLineSlow(me, lineFeature, line, obj, ind+1);
 }
