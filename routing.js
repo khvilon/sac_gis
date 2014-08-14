@@ -177,6 +177,7 @@ OLMap.prototype.drawPath =  function(data)
 
 	this.ambulancePathLayer.addFeatures([lineFeature]);
 
+	obj.step = obj.points.length/20 | 0;
 	this.drawLineSlow(this, lineFeature, line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
@@ -196,9 +197,9 @@ OLMap.prototype.drawLineSlow =  function(me, lineFeature, line, obj, ind)
 		return;
 	}	line.addPoint(obj.points[ind]);
 
-	console.log("ii" + ind + " " + me.lpusPathToDraw + " " + ind%(obj.points.length/10));
-	var delay = 0;
-	if(ind%(obj.points.length/10) == 0)
+	console.log("ii" + ind + " " + me.lpusPathToDraw + " " + step);
+
+	if(ind%step == 0)
 	{		me.ambulancePathLayer.redraw();		setTimeout(function(){me.drawLineSlow(me, lineFeature, line, obj, ind+1)}, 0.01);
 	}
 	else me.drawLineSlow(me, lineFeature, line, obj, ind+1);
