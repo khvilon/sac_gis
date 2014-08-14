@@ -52,6 +52,7 @@ OLMap.prototype.route =  function()
 	else
 	{
 		this.ambulanceLayer.removeAllFeatures();
+		this.ambulancePathLayer.removeAllFeatures();
 		$('#' + this.divName).css('cursor', 'crosshair');
 		this.clickControl.activate();
 	}
@@ -60,16 +61,15 @@ OLMap.prototype.route =  function()
 
 OLMap.prototype.routeStartSelected =  function(lat, lon)
 {	this.addAmbulance(lat, lon);
+	if(this.lpus.length == 0) return;
 	this.showRadarWaiter();
+	this.lpusPathToDraw = 0;
+	this.allLpusPathsStarted = false;
 	this.routeLPU(lat, lon, 0);
 }
 
 OLMap.prototype.routeLPU =  function(lat, lon, i)
 {
-   	if(this.lpus.length == 0) return;
-
-
-
 	var url = "route-maps.yandex.ru/1.x/?" +
     	"format=json&avoidTrafficJams=false&rll=" + lon + "," + lat +
     	"~" + this.lpus[i].lon + "," + this.lpus[i].lat +
@@ -85,7 +85,8 @@ OLMap.prototype.routeLPU =  function(lat, lon, i)
     {
     	callback = function(data)
     	{
-    		setTimeout(me.drawPath(data), 0);    		me.hideRadarWaiter();    	};
+    		me.allLpusPathsStarted = true;
+    		setTimeout(me.drawPath(data), 0);    	};
     }
     else
     {
@@ -148,10 +149,14 @@ OLMap.prototype.drawPath =  function(data)
 {
 	var maxMinutes = 31;
 
+
+
 	if(data == null) return;
 	if(data.indexOf("Bad request") !=-1) return;
 	var obj = this.pntsFromYData(data);
     if(obj.points == null) return;
+
+	this.lpusPathToDraw++;
 
     var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};
 
@@ -164,7 +169,7 @@ OLMap.prototype.drawPath =  function(data)
     var line = new OpenLayers.Geometry.LineString(p);//obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
-	this.ambulanceLayer.addFeatures([lineFeature]);
+	this.ambulancePathLayer.addFeatures([lineFeature]);
 
 	this.drawLineSlow(this, line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
@@ -173,7 +178,7 @@ OLMap.prototype.drawPath =  function(data)
 }
 
 OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
-{	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
-	this.ambulanceLayer.redraw();
+{	me.lpusPathToDraw--;	if(ind == obj.points.length) {if(me.allLpusPathsStarted && me.lpusPathToDraw==0)me.hideRadarWaiter();return; }	line.addPoint(obj.points[ind]);
+	me.ambulancePathLayer.redraw();
 	console.log("iii" + ind);
-	setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 100);}
+	setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 2);}

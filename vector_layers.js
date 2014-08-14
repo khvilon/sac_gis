@@ -65,6 +65,7 @@ OLMap.prototype.addVectorLayers = function()
 	   this.lpuLayer = addVectorLayer("ЛПУ", OLVectorStyle.lpu);
 
 	   this.ambulanceLayer = addVectorLayer("Скорая", OLVectorStyle.ambulance);
+	   this.ambulancePathLayer = addVectorLayer("Пути к ЛПУ");
 	}
     else if (this.type == "vimpel")
 	   this.stationsLayer = addVectorLayer("Базовые станции", OLVectorStyle.stations);
