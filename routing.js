@@ -166,15 +166,14 @@ OLMap.prototype.drawPath =  function(data)
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
-	this.drawLineSlow(line, obj, 1);
+	this.drawLineSlow(this, line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
 }
 
-OLMap.prototype.drawLineSlow =  function(line, obj, ind)
+OLMap.prototype.drawLineSlow =  function(me, line, obj, ind)
 {	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
 	this.ambulanceLayer.refresh();
 	//alert(ind);
-	var me = this;
-	setTimeout(function(){me.drawLineSlow(line, obj, ind+1)}, 1000);}
+	setTimeout(function(){me.drawLineSlow(me, line, obj, ind+1)}, 1000);}
