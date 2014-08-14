@@ -164,12 +164,12 @@ OLMap.prototype.drawPath =  function(data)
 
 	var p = [];
 	p.push(obj.points[0]);
-  //  var line = new OpenLayers.Geometry.LineString(p);//obj.points);
-//	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
+    var line = new OpenLayers.Geometry.LineString(p);//obj.points);
+	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
-//	this.ambulanceLayer.addFeatures([lineFeature]);
+	this.ambulanceLayer.addFeatures([lineFeature]);
 
-//	drawLineSlow =  function(line, obj, 1);
+	this.drawLineSlow(line, obj, 1);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
