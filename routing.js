@@ -153,21 +153,22 @@ OLMap.prototype.drawPath =  function(data)
 	var obj = this.pntsFromYData(data);
     if(obj.points == null) return;
 
-    var pathStyle = new Object();
-    pathStyle.strokeOpacity = 0.6;
-    pathStyle.strokeWidth = 3;
+    var pathStyle = {strokeOpacity: 0.6,strokeWidth: 3};//new Object();
+   // pathStyle.strokeOpacity = 0.6;
+   // pathStyle.strokeWidth = 3;
     //{strokeOpacity: 0.6,strokeWidth: 3}
 
     if(obj.time < maxMinutes && obj.timeJams < maxMinutes) pathStyle.strokeColor='green';
     else if(obj.time < maxMinutes) pathStyle.strokeColor='yellow';
     else pathStyle.strokeColor='red';
 
- /*   var line = new OpenLayers.Geometry.LineString([]);//obj.points);
+	var p = [];
+    var line = new OpenLayers.Geometry.LineString(p);//obj.points);
 	var lineFeature = new OpenLayers.Feature.Vector(line, null, pathStyle);
 
 	this.ambulanceLayer.addFeatures([lineFeature]);
 
-	drawLineSlow =  function(line, obj, 0);     */
+	drawLineSlow =  function(line, obj, 0);
 	//if(!noZoom) this.map.zoomToExtent(line.getBounds());
 
     //return line.getGeodesicLength(new OpenLayers.Projection("EPSG:900913"))/1000;
