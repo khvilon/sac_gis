@@ -71,10 +71,10 @@ OLMap.prototype.routeStartSelected =  function(lat, lon)
 OLMap.prototype.routeLPU =  function(me, lat, lon, i)
 {	if(me.lpusPathToDraw > 2)
     {
-    	me = this;
     	callback = function(data)
     	{
     		setTimeout(function(){me.routeLPU(me, lat, lon, i);}, 1000);
+    		return;
     	};
     }
 
