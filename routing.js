@@ -175,5 +175,6 @@ OLMap.prototype.drawPath =  function(data)
 OLMap.prototype.drawLineSlow =  function(line, obj, ind)
 {	if(ind == obj.points.length) return;	line.addPoint(obj.points[ind]);
 	this.ambulanceLayer.refresh();
-	alert(ind);
-	setTimeout(function(){this.drawLineSlow(line, obj, ind+1)}, 1000);}
+	//alert(ind);
+	var me = this;
+	setTimeout(function(){me.drawLineSlow(line, obj, ind+1)}, 1000);}
